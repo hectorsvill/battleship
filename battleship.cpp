@@ -362,7 +362,7 @@ void displayBoards(char a[][10], char b[][10])
 			if (i < 10)
 				for (size_t s = 0; s < 3; s++)
 				{
-					if (s == 1)
+					if (s == 1 && b[r][c] != 's')
 						cout << b[r][c++];
 					else
 						cout << ' ';
