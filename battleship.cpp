@@ -107,18 +107,42 @@ bool spaceOccupied(PlayerBoard &p, int row, int col, char orientation, int s_siz
 {
 	if (orientation == 'v')
 	{
+		if s_size + row > 9)
+		{
+			cout << "Error: Ship placement is outside the board.\n";
+			return (false);
+		}
+	}
+	else if (orientation == 'h')
+	{
+		if( s_size + col > 9)
+		{
+			cout << "Error: Ship placement is outside the board.\n";
+			return (false);
+		}
+	}
+
+
+	if (orientation == 'v')
+	{
 		for (size_t i = row; i < s_size + row; i++)
 		{
 			if (p.board[i][col] != ' ')
+			{
+				cout << "Error: Space already occupied.\n";
 				return (false);
+			}
 		}
 	}
-	if (orientation == 'h')
+	else if (orientation == 'h')
 	{
 		for (size_t i = col; i < s_size + col; i++)
 		{
 			if (p.board[row][i] != ' ')
+			{
+				cout << "Error: Space already occupied.\n";
 				return (false);
+			}
 		}
 	}
 	return (false);
