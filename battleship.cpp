@@ -86,8 +86,8 @@ void game(PlayerBoard &P1, PlayerBoard &P2)
 	row = -1;
 	col = -1;
 
-	do{
 	displayBoards(P1.board, P2.board);
+	do{
 	cout << "\n\n\n\n\n"
 		 << "Player 1:\n"
 		 << "Fire a shot: ";
@@ -95,7 +95,7 @@ void game(PlayerBoard &P1, PlayerBoard &P2)
 	row = (char)toupper(c_row) - 'A';
 	col -= 1;
 	cout << "\n";
-	}while (check_game(row, col));
+	}while (!check_game(row, col));
 
 
 
@@ -103,9 +103,8 @@ void game(PlayerBoard &P1, PlayerBoard &P2)
 	cout << row << " " << col << endl;
 
 
-
-	do{
 	displayBoards(P2.board, P1.board);
+	do{
 	cout << "\n\n\n\n\n"
 		 << "Player 2:\n"
 		 << "Fire a shot: ";
@@ -113,9 +112,10 @@ void game(PlayerBoard &P1, PlayerBoard &P2)
 	row = (char)toupper(c_row) - 'A';
 	col -= 1;
 	cout << "\n";
- 	}while (check_game(row, col));
+	}while (!check_game(row, col));
 
 
+cout << row << " " << col << endl;
 
 
 
