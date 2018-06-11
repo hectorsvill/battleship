@@ -91,7 +91,7 @@ void displayBoards(char a[][10], char b[][10])
 		for (size_t i = 0; i < 11; i++)
 		{
 			cout << '|';
-			if (c < 10)
+			if (i < 10)
 				for (size_t i = 0; i < 3; i++)
 				{
 					// if (i == 1)
@@ -106,7 +106,7 @@ void displayBoards(char a[][10], char b[][10])
 		for (size_t i = 0; i < 11; i++)
 		{
 			cout << '|';
-			if (c < 10)
+			if (i < 10)
 				for (size_t i = 0; i < 3; i++)
 				{
 					// if (i == 1)
