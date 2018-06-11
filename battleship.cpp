@@ -47,7 +47,9 @@ int main()
 	PlayerBoard	P1;
 	PlayerBoard	P2;
 	int			player_turn;
+	int			x;
 
+	x = 0;
 	initB(P1.board);
 	initB(P2.board);
 	initFleet(P1);
@@ -58,6 +60,7 @@ int main()
 
 	player_turn = 1;
 
+	clearScreen();
 	while (1)
 	{
 		if (player_turn == 2)
@@ -72,6 +75,12 @@ int main()
 
 			player_turn = 2;
 		}
+		cout << "\n.\n.\n.\n\n"
+			 << "Hand terminal to player "<< player_turn << "!\n"
+			 << "Enter any digit (0-9) to continue: ";
+		cin >> x;
+
+		clearScreen();
 	}
 
 	return (0);
@@ -233,6 +242,9 @@ void setShip_test(PlayerBoard &p, int shipIndex, int x)
 
 void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 {
+	int x;
+
+	x = 0;
 
 	clearScreen();
 	cout << "Player 1 set your board.\n";
@@ -243,8 +255,13 @@ void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 		displayBoards(P1.board, P2.board);
 	}
 
+	cout << "\n.\n.\n.\n\n"
+		 << "Hand terminal to player 2!\n"
+		 << "Enter any digit (0-9) to continue: ";
+	cin >> x;
+
 	clearScreen();
-	cout << "\n.\n.\n.\n\nPlayer 2 set your board.\n";
+	cout << "Player 2 set your board.\n";
 	displayBoards(P2.board, P1.board);
 	for (size_t i = 0; i < FLEET_SIZE; i++)
 	{
