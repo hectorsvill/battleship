@@ -100,9 +100,10 @@ bool check(int row, int col, char orientation)
 		return (false);
 	}
 
-	if (orientation != 'v' || orientation != 'h')
+	if (orientation != 'v' && orientation != 'h')
 	{
 		cout << "Error: Orientation of ship is invalid.\n";
+		return (false);
 	}
 
 	return (true);
