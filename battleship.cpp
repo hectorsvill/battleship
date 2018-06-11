@@ -56,13 +56,53 @@ int main()
 }
 
 /*
-A setShip function that takes in a PlayerBoard object by reference and an int variable
-that stores the index of the ship that is currently being placed, and places the ship onto
-the board. The setShip function calls the getValidShipInfo function to determine which
-spots on the board the ship will occupy.
+*	A setShip function that takes in a PlayerBoard object by reference and an int variable
+*	that stores the index of the ship that is currently being placed, and places the ship onto
+*	the board. The setShip function calls the getValidShipInfo function to determine which
+*	spots on the board the ship will occupy.
+*/
+void setShip(PlayerBoard &p, int shipIndex)
+{
+
+
+}
+
+/*
+*	A getValidShipInfo function that takes in four parameters by reference, two
+*	ints holding the row and the column of the starting coordinates of the
+*	ship, a char that will hold the orientation of the ship (horizontal or
+*	vertical), and the PlayerBoard. The function will also take a fifth
+*	argument by value which is the index of the ship being placed. The
+*	function will prompt the user for the starting row and column coordinates
+*	of the ship which the user will enter as: letter number. These will then
+*	need to be converted to the proper row and column index of the array.
+*	The function will also prompt the user for the horizontal or vertical
+*	orientation of the ship. The function will be responsible for performing
+*	the error checking so that a valid ship placement is received from the
+*	user. The function will also call the function spaceOccupied to determine
+*	if any of the spaces the ship would take up if placed on the board are
+*	currently occupied.
 */
 
+void getValidShipInfo(int &row, int &col, char &orientation,
+						PlayerBoard p, int shipIndex)
+{
+	char c_row;
 
+	c_row = 'x';
+
+
+	cout << "Enter the starting coordinates of your "
+		 << p.ships[shipIndex].name << ": ";
+	cin >> c_row;
+	cout << endl;
+
+	cout << "Enter the orientation of your "
+		 << p.ships[shipIndex].name << " (horizontal(h) or vertical(v)):";
+	cin >> col;
+
+
+}
 
 
 /*
