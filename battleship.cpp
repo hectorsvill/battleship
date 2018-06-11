@@ -52,9 +52,9 @@ int main()
 */
 void initBoard(char a[][10])
 {
-	for (size_t i = 0; i < 10; i++)
-		for (size_t i = 0; i < 10; i++)
-			a[i][i] = 'x';
+	for (size_t r = 0; r < 10; r++)
+		for (size_t c = 0; c < 10; c++)
+			a[r][c] = 'x';
 }
 
 /*
@@ -86,12 +86,12 @@ void displayBoards(char a[][10], char b[][10])
 
 	while (A <= 'J')
 	{
-
+		c = 0;
 		cout << l1 << l2 << A << ' ';
 		for (size_t i = 0; i < 11; i++)
 		{
 			cout << '|';
-			if (r < 10)
+			if (c < 10)
 				for (size_t i = 0; i < 3; i++)
 				{
 					// if (i == 1)
@@ -106,7 +106,7 @@ void displayBoards(char a[][10], char b[][10])
 		for (size_t i = 0; i < 11; i++)
 		{
 			cout << '|';
-			if (r < 10)
+			if (c < 10)
 				for (size_t i = 0; i < 3; i++)
 				{
 					// if (i == 1)
@@ -118,5 +118,6 @@ void displayBoards(char a[][10], char b[][10])
 		cout << endl;
 
 	}
+
 	cout << l1 << l2;
 }
