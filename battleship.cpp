@@ -67,15 +67,7 @@ int main()
 	return (0);
 }
 
-bool check_game(int row, int col)
-{
-	if (!(row >= 0 && row <= 9) && !(col >= 0 && col <= 9))
-	{
-		cout << "Invalid\n";
-		return (true);
-	}
-	return (false);
-}
+
 void game(PlayerBoard &P1, PlayerBoard &P2)
 {
 	char	c_row;
@@ -87,35 +79,45 @@ void game(PlayerBoard &P1, PlayerBoard &P2)
 	col = -1;
 
 	displayBoards(P1.board, P2.board);
-	do{
-	cout << "\n\n\n\n\n"
-		 << "Player 1:\n"
-		 << "Fire a shot: ";
-	cin >> c_row >> col;
-	row = (char)toupper(c_row) - 'A';
-	col -= 1;
-	cout << "\n";
-	}while (!check_game(row, col));
+	cout << "\n\n\n\n\n";
+
+
+	while (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9))
+	{
+		cout << "Player 1:\n"
+			 << "Fire a shot: ";
+		cin >> c_row >> col;
+		cout << "\n";
+
+		row = (char)toupper(c_row) - 'A';
+		col -= 1;
+
+		if (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9))
+			cout << "Invalid\n";
+
+	}
 
 
 
 
 	cout << row << " " << col << endl;
 
+	// c_row = 'x';
+	// row = -1;
+	// col = -1;
+	//
+	// displayBoards(P2.board, P1.board);
+	// do{
+	// cout << "\n\n\n\n\n"
+	// 	 << "Player 2:\n"
+	// 	 << "Fire a shot: ";
+	// cin >> c_row >> col;
+	// row = (char)toupper(c_row) - 'A';
+	// col -= 1;
+	// cout << "\n";
+	// }while (!check_game(row, col));
 
-	displayBoards(P2.board, P1.board);
-	do{
-	cout << "\n\n\n\n\n"
-		 << "Player 2:\n"
-		 << "Fire a shot: ";
-	cin >> c_row >> col;
-	row = (char)toupper(c_row) - 'A';
-	col -= 1;
-	cout << "\n";
-	}while (!check_game(row, col));
-
-
-cout << row << " " << col << endl;
+	//cout << row << " " << col << endl;
 
 
 
