@@ -53,6 +53,8 @@ int main()
 
 
 	initBoard(P1, P2);
+	displayBoards(P1.board, P2.board);
+	displayBoards(P2.board, P1.board);
 
 
 
@@ -71,9 +73,7 @@ void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 {
 
 	cout << "Player 1 set your board.\n";
-
 	displayBoards(P1.board, P2.board);
-
 	for (size_t i = 0; i < FLEET_SIZE; i++)
 	{
 		setShip(P1, i);
@@ -82,7 +82,6 @@ void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 
 	cout << "\nPlayer 2 set your board.\n";
 	displayBoards(P2.board, P1.board);
-
 	for (size_t i = 0; i < FLEET_SIZE; i++)
 	{
 		setShip(P2, i);
