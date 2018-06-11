@@ -34,6 +34,8 @@ struct PlayerBoard
 void initBoard(char [][10]);
 void displayBoards(char [][10], char [][10]);
 void initFleet(PlayerBoard&);
+void setShip(PlayerBoard&, int);
+void getValidShipInfo(int&, int&, char&, PlayerBoard&, int);
 
 
 int main()
@@ -50,7 +52,7 @@ int main()
 
 	displayBoards(P1.board, P2.board);
 
-	setShip(p, 0);
+	setShip(P1, 0);
 
 	return (0);
 }
@@ -71,7 +73,7 @@ void setShip(PlayerBoard &p, int shipIndex)
 	col = -1;
 	orientation = 'x';
 
-	getValidShipInfo(row, col, orientation, p, shipIndex)
+	getValidShipInfo(row, col, orientation, p, shipIndex);
 
 }
 
@@ -102,7 +104,7 @@ void getValidShipInfo(int &row, int &col, char &orientation,
 
 	cout << "Enter the starting coordinates of your "
 		 << p.ships[shipIndex].name << ": ";
-	cin >> c_row;
+	cin >> c_row >> col;
 	cout << endl;
 
 	cout << "Enter the orientation of your "
