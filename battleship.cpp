@@ -43,8 +43,9 @@ void turn(PlayerBoard &, PlayerBoard &, int);
 
 int main()
 {
-	PlayerBoard P1;
-	PlayerBoard P2;
+	PlayerBoard	P1;
+	PlayerBoard	P2;
+	int			player_turn;
 
 	initB(P1.board);
 	initB(P2.board);
@@ -54,33 +55,21 @@ int main()
 
 	cout << ".\n.\n.\n";
 
-	int c = 0;
-	int player_turn = 1;
+	player_turn = 1;
 
 	while (1)
 	{
-
-
-		if (c % 2 == 0)
+		if (player_turn == 2)
 		{
 			turn(P2, P1, player_turn);
-			player_turn = 2;
-			c++;
+			player_turn = 1;
 		}
 		else
 		{
 			turn(P1, P2, player_turn);
-			player_turn = 1;
-			c++;
+			player_turn = 2;
 		}
 	}
-
-
-
-	// displayBoards(P1.board, P2.board);
-	// displayBoards(P2.board, P1.board);
-
-
 
 	return (0);
 }
@@ -95,7 +84,7 @@ bool game_won(char b[][10], int p_num)
 				return (false);
 
 	cout << "You sunk the fleet!!! You win!!!\n";
-
+	exit(1);
 
 	return (true);
 }
@@ -144,8 +133,7 @@ void turn(PlayerBoard &P1, PlayerBoard &P2, int p_num)
 		P2.board[row][col] = 'M';
 	}
 
-	if (game_won(P2.board, p_num))
-		cout << "won\n";//exit(1);
+	game_won(P2.board, p_num);
 
 
 
