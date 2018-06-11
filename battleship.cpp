@@ -36,6 +36,8 @@ void displayBoards(char [][10], char [][10]);
 void initFleet(PlayerBoard&);
 void setShip(PlayerBoard&, int);
 void getValidShipInfo(int&, int&, char&, PlayerBoard&, int);
+void initBoard(PlayerBoard&, PlayerBoard&);
+
 
 
 int main()
@@ -48,19 +50,45 @@ int main()
 	initFleet(P1);
 	initFleet(P2);
 
+
+
+	initBoard(P1, P2);
+
+
+
+	return (0);
+}
+
+
+
+/*
+*	An initBoard function that takes in two PlayerBoard objects by reference,
+*	and calls the setShip function for each ship in the fleet. After each ship
+*	is placed on the board the boards should be displayed.
+*/
+
+void initBoard(PlayerBoard &P1, PlayerBoard &P2)
+{
+
 	cout << "Player 1 set your board.\n";
 
 	displayBoards(P1.board, P2.board);
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < FLEET_SIZE; i++)
 	{
-		/* code */
-
 		setShip(P1, i);
 		displayBoards(P1.board, P2.board);
-
 	}
-	return (0);
+
+	cout << "\nPlayer 2 set your board.\n";
+	displayBoards(P2.board, P1.board);
+
+	for (size_t i = 0; i < FLEET_SIZE; i++)
+	{
+		setShip(P2, i);
+		displayBoards(P2.board, P1.board);
+	}
+
 }
 
 /*
