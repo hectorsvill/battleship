@@ -37,7 +37,7 @@ void initFleet(PlayerBoard&);
 void setShip(PlayerBoard&, int);
 void getValidShipInfo(int&, int&, char&, PlayerBoard&, int);
 void initBoard(PlayerBoard&, PlayerBoard&);
-void game(PlayerBoard &, PlayerBoard &);
+void turn(PlayerBoard &, PlayerBoard &);
 
 
 
@@ -55,7 +55,7 @@ int main()
 	cout << ".\n.\n.\n";
 
 
-	game(P1, P2);
+	turn(P1, P2);
 
 
 
@@ -68,7 +68,7 @@ int main()
 }
 
 
-void game(PlayerBoard &P1, PlayerBoard &P2)
+void turn(PlayerBoard &P1, PlayerBoard &P2)
 {
 	char	c_row;
 	int		row;
@@ -81,9 +81,7 @@ void game(PlayerBoard &P1, PlayerBoard &P2)
 	displayBoards(P1.board, P2.board);
 	cout << "\n\n\n\n\n";
 
-
-	while (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9))
-	{
+	do{
 		cout << "Player 1:\n"
 			 << "Fire a shot: ";
 		cin >> c_row >> col;
@@ -92,11 +90,13 @@ void game(PlayerBoard &P1, PlayerBoard &P2)
 		row = (char)toupper(c_row) - 'A';
 		col -= 1;
 
-		if (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9))
+		if (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9)
+				|| P2.board[row][col] != ' ')
 			cout << "Invalid\n";
 
 	}
-
+	while (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9)
+			|| P2.board[row][col] != ' ');
 
 
 
