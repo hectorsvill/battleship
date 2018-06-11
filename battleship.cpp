@@ -48,13 +48,18 @@ int main()
 	initFleet(P1);
 	initFleet(P2);
 
-
+	cout << "Player 1 set your board.\n";
 
 	displayBoards(P1.board, P2.board);
 
-	setShip(P1, 0);
-	displayBoards(P1.board, P2.board);
+	for (size_t i = 0; i < 5; i++)
+	{
+		/* code */
 
+		setShip(P1, i);
+		displayBoards(P1.board, P2.board);
+
+	}
 	return (0);
 }
 
@@ -78,21 +83,32 @@ void setShip(PlayerBoard &p, int shipIndex)
 
 	if (orientation == 'v')
 	{
+		if (p.ships[shipIndex].size + row > 10)
+		{
+			cout << "Error: Ship placement is outside the board.\n";
+			return (setShip(p, shipIndex));
+		}
+
 		for (size_t i = row; i < p.ships[shipIndex].size + row; i++)
 		{
 			p.board[i][col] = 's';
 		}
 	}
-
-	if (orientation == 'h')
+	else if (orientation == 'h')
 	{
+		if (p.ships[shipIndex].size + col > 10)
+		{
+			cout << "Error: Ship placement is outside the board.\n";
+			return (setShip(p, shipIndex));
+		}
+
 		for (size_t i = col; i < p.ships[shipIndex].size + col; i++)
 		{
 			p.board[row][i] = 's';
 		}
 	}
 
-	cout << row << " " << col << " " << orientation << " " << shipIndex<< endl;
+//	cout << row << " " << col << " " << orientation << " " << shipIndex<< endl;
 }
 
 /*
@@ -105,16 +121,8 @@ void setShip(PlayerBoard &p, int shipIndex)
 
 bool spaceOccupied(PlayerBoard &p, int row, int col, char orientation, int s_size)
 {
-
-
 	if (orientation == 'v')
 	{
-		if (s_size + row < 9)
-		{
-			cout << "Error: Ship placement is outside the board.\n";
-			return (true);
-		}
-
 		for (size_t i = row; i < s_size + row; i++)
 		{
 			if (p.board[i][col] != ' ')
@@ -126,12 +134,6 @@ bool spaceOccupied(PlayerBoard &p, int row, int col, char orientation, int s_siz
 	}
 	else if (orientation == 'h')
 	{
-		if (s_size + col < 9)
-		{
-			cout << "Error: Ship placement is outside the board.\n";
-			return (true);
-		}
-
 		for (size_t i = col; i < s_size + col; i++)
 		{
 			if (p.board[row][i] != ' ')
@@ -144,6 +146,10 @@ bool spaceOccupied(PlayerBoard &p, int row, int col, char orientation, int s_siz
 	return (false);
 }
 
+
+/*
+*	check for invalid coordinates.
+*/
 bool check(int row, int col, char orientation)
 {
 	if (!(row >= 0 && row <= 9))
@@ -192,6 +198,7 @@ void getValidShipInfo(int &row, int &col, char &orientation,
 	c_row = 'x';
 
 	do{
+
 	cout << "Enter the starting coordinates of your "
 		 << p.ships[shipIndex].name << ": ";
 	cin >> c_row >> col;
@@ -205,8 +212,6 @@ void getValidShipInfo(int &row, int &col, char &orientation,
 	row = (char)toupper(c_row) - 'A';
 	col -= 1;
 	orientation = (char)tolower(orientation);
-
-	cout << p.ships[shipIndex].size << endl;
 
 	}
 	while (!check(row, col, orientation)
