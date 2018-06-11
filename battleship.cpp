@@ -37,6 +37,7 @@ void initFleet(PlayerBoard&);
 void setShip(PlayerBoard&, int);
 void getValidShipInfo(int&, int&, char&, PlayerBoard&, int);
 void initBoard(PlayerBoard&, PlayerBoard&);
+void game(PlayerBoard &, PlayerBoard &);
 
 
 
@@ -51,8 +52,10 @@ int main()
 	initFleet(P2);
 	initBoard(P1, P2);
 
+	cout << ".\n.\n.\n";
 
 
+	game(P1, P2);
 
 
 
@@ -64,7 +67,140 @@ int main()
 	return (0);
 }
 
+bool check_game(int row, int col)
+{
+	if (!(row >= 0 && row <= 9) && !(col >= 0 && col <= 9))
+	{
+		cout << "Invalid\n";
+		return (true);
+	}
+	return (false);
+}
+void game(PlayerBoard &P1, PlayerBoard &P2)
+{
+	char	c_row;
+	int		row;
+	int		col;
 
+	c_row = 'x';
+	row = -1;
+	col = -1;
+
+	do{
+	displayBoards(P1.board, P2.board);
+	cout << "\n\n\n\n\n"
+		 << "Player 1:\n"
+		 << "Fire a shot: ";
+	cin >> c_row >> col;
+	row = (char)toupper(c_row) - 'A';
+	col -= 1;
+	cout << "\n";
+	}while (check_game(row, col));
+
+
+
+
+	cout << row << " " << col << endl;
+
+
+
+	do{
+	displayBoards(P2.board, P1.board);
+	cout << "\n\n\n\n\n"
+		 << "Player 2:\n"
+		 << "Fire a shot: ";
+	cin >> c_row >> col;
+	row = (char)toupper(c_row) - 'A';
+	col -= 1;
+	cout << "\n";
+ 	}while (check_game(row, col));
+
+
+
+
+
+}
+
+/*test
+void setShip_test(PlayerBoard &p, int shipIndex, int x)
+{
+	size_t v;
+
+	v = 0;
+
+		p.ships[shipIndex].hitCount = 0;
+
+		if (shipIndex == 0)
+		{
+			p.ships[shipIndex].name = "carrier";
+			p.ships[shipIndex].size = Carrier_SIZE;
+			for (v = 0; v < p.ships[v].size; v++)
+			{
+				p.ships[shipIndex].points.push_back(Point());
+				p.ships[shipIndex].points[v].row = v;
+				p.ships[shipIndex].points[v].col = 0 + x;
+
+			}
+		}
+		else if (shipIndex == 1)
+		{
+			p.ships[shipIndex].name = "battleship";
+			p.ships[shipIndex].size = Battleship_SIZE;
+
+
+			for (v = 0; v < p.ships[v].size; v++)
+			{
+				p.ships[shipIndex].points.push_back(Point());
+				p.ships[shipIndex].points[v].row = v;
+				p.ships[shipIndex].points[v].col = 1 + x;
+
+			}
+		}
+		else if (shipIndex == 2)
+		{
+			p.ships[shipIndex].name = "cruiser";
+			p.ships[shipIndex].size = Cruiser_SIZE;
+
+			for (v = 0; v < p.ships[v].size; v++)
+			{
+				p.ships[shipIndex].points.push_back(Point());
+				p.ships[shipIndex].points[v].row = v;
+				p.ships[shipIndex].points[v].col = 2 + x;
+
+			}
+		}
+		else if (shipIndex == 3)
+		{
+			p.ships[shipIndex].name = "submarine";
+			p.ships[shipIndex].size = Submarine_SIZE;
+
+			for (v = 0; v < p.ships[v].size; v++)
+			{
+				p.ships[shipIndex].points.push_back(Point());
+				p.ships[shipIndex].points[v].row = v;
+				p.ships[shipIndex].points[v].col = 3 + x;
+
+			}
+		}
+		else if (shipIndex == 4)
+		{
+			p.ships[shipIndex].name = "destroyer";
+			p.ships[shipIndex].size = Destroyer_SIZE;
+
+			for (v = 0; v < p.ships[v].size; v++)
+			{
+				p.ships[shipIndex].points.push_back(Point());
+				p.ships[shipIndex].points[v].row = v;
+				p.ships[shipIndex].points[v].col = 4 + x;
+
+			}
+		}
+
+		p.board[p.ships[shipIndex].points[v].row][p.ships[shipIndex].points[v].col] = 's';
+
+
+}
+*/
 
 /*
 *	An initBoard function that takes in two PlayerBoard objects by reference,
