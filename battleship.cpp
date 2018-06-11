@@ -50,7 +50,7 @@ int main()
 
 	displayBoards(P1.board, P2.board);
 
-
+	setShip(p, 0);
 
 	return (0);
 }
@@ -63,7 +63,15 @@ int main()
 */
 void setShip(PlayerBoard &p, int shipIndex)
 {
+	int		row;
+	int		col;
+	char	orientation;
 
+	row = -1;
+	col = -1;
+	orientation = 'x';
+
+	getValidShipInfo(row, col, orientation, p, shipIndex)
 
 }
 
@@ -85,7 +93,7 @@ void setShip(PlayerBoard &p, int shipIndex)
 */
 
 void getValidShipInfo(int &row, int &col, char &orientation,
-						PlayerBoard p, int shipIndex)
+						PlayerBoard &p, int shipIndex)
 {
 	char c_row;
 
