@@ -67,6 +67,10 @@ int main()
 	return (0);
 }
 
+void make_move(int row, int col, char &b[][10])
+{
+
+}
 
 void turn(PlayerBoard &P1, PlayerBoard &P2)
 {
@@ -80,7 +84,7 @@ void turn(PlayerBoard &P1, PlayerBoard &P2)
 
 	displayBoards(P1.board, P2.board);
 	cout << "\n\n\n\n\n";
-
+	cin.clear();
 	do{
 		cout << "Player 1:\n"
 			 << "Fire a shot: ";
@@ -91,15 +95,15 @@ void turn(PlayerBoard &P1, PlayerBoard &P2)
 		col -= 1;
 
 		if (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9)
-				|| P2.board[row][col] != ' ')
+				|| (P2.board[row][col] != ' ' &&  P2.board[row][col] != 's'))
 			cout << "Invalid\n";
 
 	}
 	while (!(row >= 0 && row <= 9) || !(col >= 0 && col <= 9)
-			|| P2.board[row][col] != ' ');
+			|| (P2.board[row][col] != ' ' &&  P2.board[row][col] != 's'));
 
 
-
+	make_move(row, col, P2.board);
 	cout << row << " " << col << endl;
 
 	// c_row = 'x';
