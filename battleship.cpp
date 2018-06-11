@@ -63,6 +63,7 @@ void initBoard(char a[][10])
 void displayBoards(char a[][10], char b[][10])
 {
 	int		c;
+	int		r;
 	char	A;
 	string	l1;
 	string	l2;
@@ -70,6 +71,7 @@ void displayBoards(char a[][10], char b[][10])
 
 	A = 'A';
 	c = 0;
+	r = 0;
 	l1 = "  -----------------------------------------";
 	l2 = "            -----------------------------------------\n";
 
@@ -82,7 +84,7 @@ void displayBoards(char a[][10], char b[][10])
 
 
 
-	for (size_t r = 0; r < 11; r++)
+	while (A <= 'J')
 	{
 
 		cout << l1 << l2 << A << ' ';
@@ -92,9 +94,9 @@ void displayBoards(char a[][10], char b[][10])
 			if (r < 10)
 				for (size_t i = 0; i < 3; i++)
 				{
-					if (i == 1)
-						cout << a[r][c++];
-					else
+					// if (i == 1)
+					// 	cout << a[r][c++];
+					// else
 						cout << ' ';
 				}
 		}
@@ -107,9 +109,9 @@ void displayBoards(char a[][10], char b[][10])
 			if (r < 10)
 				for (size_t i = 0; i < 3; i++)
 				{
-					if (i == 1)
-						cout << b[r][c++];
-					else
+					// if (i == 1)
+					// 	cout << b[r++][c++];
+					// else
 						cout << ' ';
 				}
 		}
