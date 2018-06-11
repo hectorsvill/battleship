@@ -53,6 +53,7 @@ int main()
 	displayBoards(P1.board, P2.board);
 
 	setShip(P1, 0);
+	displayBoards(P1.board, P2.board);
 
 	return (0);
 }
@@ -75,6 +76,22 @@ void setShip(PlayerBoard &p, int shipIndex)
 
 	getValidShipInfo(row, col, orientation, p, shipIndex);
 
+	if (orientation == 'v')
+	{
+		for (size_t i = row; i < p.ships[shipIndex].size + row; i++)
+		{
+			p.board[i][col] = 's';
+		}
+	}
+
+	if (orientation == 'h')
+	{
+		for (size_t i = col; i < p.ships[shipIndex].size + col; i++)
+		{
+			p.board[row][i] = 's';
+		}
+	}
+
 	cout << row << " " << col << " " << orientation << " " << shipIndex<< endl;
 }
 
@@ -86,6 +103,26 @@ void setShip(PlayerBoard &p, int shipIndex)
 *	the space is not occupied.
 */
 
+bool spaceOccupied(PlayerBoard &p, int row, int col, char orientation, int s_size)
+{
+	if (orientation == 'v')
+	{
+		for (size_t i = row; i < s_size + row; i++)
+		{
+			if (p.board[i][col] != ' ')
+				return (false);
+		}
+	}
+	if (orientation == 'h')
+	{
+		for (size_t i = col; i < s_size + col; i++)
+		{
+			if (p.board[row][i] != ' ')
+				return (false);
+		}
+	}
+	return (false);
+}
 
 bool check(int row, int col, char orientation)
 {
@@ -149,12 +186,11 @@ void getValidShipInfo(int &row, int &col, char &orientation,
 	col -= 1;
 	orientation = (char)tolower(orientation);
 	}
-	while (!check(row, col, orientation));
-
+	while (!check(row, col, orientation)
+			&& spaceOccupied(p, row, col,
+				orientation, p.ships[shipIndex].size));
 
 //	cout << c_row << " " << col << " " << orientation << " " << shipIndex<< endl;
-
-	//spaceOccupied();
 }
 
 
