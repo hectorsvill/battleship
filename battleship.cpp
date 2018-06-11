@@ -66,12 +66,15 @@ int main()
 		if (player_turn == 2)
 		{
 			turn(P2, P1, player_turn);
+			displayBoards(P2.board, P1.board);
 
 			player_turn = 1;
 		}
 		else
 		{
 			turn(P1, P2, player_turn);
+			displayBoards(P1.board, P2.board);
+
 
 			player_turn = 2;
 		}
@@ -268,6 +271,11 @@ void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 		setShip(P2, i);
 		displayBoards(P2.board, P1.board);
 	}
+
+	cout << "\n.\n.\n.\n\n"
+		 << "Hand terminal to player 2!\n"
+		 << "Enter any digit (0-9) to continue: ";
+	cin >> x;
 
 }
 
