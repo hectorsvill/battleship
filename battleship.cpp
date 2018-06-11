@@ -59,15 +59,17 @@ int main()
 
 	while (1)
 	{
-		turn(P1, P2, turn);
+
 
 		if (c % 2 == 0)
 		{
+			turn(P2, P1, player_turn);
 			player_turn = 2;
 			c++;
 		}
 		else
 		{
+			turn(P1, P2, player_turn);
 			player_turn = 1;
 			c++;
 		}
