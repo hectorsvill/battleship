@@ -119,6 +119,11 @@ void turn(PlayerBoard &P1, PlayerBoard &P2, int p_num)
 	cout << "\n\n\n\n\n";
 	cin.clear();
 	do{
+
+		c_row = 'x';
+		row = -1;
+		col = -1;
+
 		cout << "Player "<< p_num<<":\n"
 			 << "Fire a shot: ";
 		cin >> c_row >> col;
