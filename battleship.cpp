@@ -75,7 +75,39 @@ void setShip(PlayerBoard &p, int shipIndex)
 
 	getValidShipInfo(row, col, orientation, p, shipIndex);
 
+	cout << row << " " << col << " " << orientation << " " << shipIndex<< endl;
 }
+
+/*
+*	A spaceOccupied function that takes in the PlayerBoard object, an int for
+*	the row and col placement of the ship, a character for the orientation,
+*	and the ship size. This function returns true if the placement of the
+*	ship would overlap an already existing ship placement or false if
+*	the space is not occupied.
+*/
+
+
+bool check(int row, int col, char orientation)
+{
+	if (!(row >= 0 && row <= 9))
+	{
+		cout << "Error: Coordinates are not valid.\n";
+		return (false);
+	}
+	else if (!(col >= 0 && col <= 9))
+	{
+		cout << "Error: Coordinates are not valid.\n";
+		return (false);
+	}
+
+	if (orientation != 'v' || orientation != 'h')
+	{
+		cout << "Error: Orientation of ship is invalid.\n";
+	}
+
+	return (true);
+}
+
 
 /*
 *	A getValidShipInfo function that takes in four parameters by reference, two
@@ -101,17 +133,27 @@ void getValidShipInfo(int &row, int &col, char &orientation,
 
 	c_row = 'x';
 
-
+	do{
 	cout << "Enter the starting coordinates of your "
 		 << p.ships[shipIndex].name << ": ";
 	cin >> c_row >> col;
 	cout << endl;
 
 	cout << "Enter the orientation of your "
-		 << p.ships[shipIndex].name << " (horizontal(h) or vertical(v)):";
-	cin >> col;
+		 << p.ships[shipIndex].name << " (horizontal(h) or vertical(v)): ";
+	cin >> orientation;
+	cout << endl;
+
+	row = (char)toupper(c_row) - 'A';
+	col -= 1;
+	orientation = (char)tolower(orientation);
+	}
+	while (!check(row, col, orientation));
 
 
+//	cout << c_row << " " << col << " " << orientation << " " << shipIndex<< endl;
+
+	//spaceOccupied();
 }
 
 
