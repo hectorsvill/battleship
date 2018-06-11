@@ -43,6 +43,15 @@ int main()
 	initBoard(P1.board);
 	initBoard(P2.board);
 
+	for (size_t i = 0; i < 10; i++)
+	{
+		for (size_t i = 0; i < 10; i++)
+		{
+			cout << P1.board[i][i];
+		}
+		cout << endl;
+	}
+
 	displayBoards(P1.board, P2.board);
 	return (0);
 }
@@ -52,9 +61,14 @@ int main()
 */
 void initBoard(char a[][10])
 {
+	char cc = '0';
+
 	for (size_t r = 0; r < 10; r++)
+	{
+		cc = '0';
 		for (size_t c = 0; c < 10; c++)
-			a[r][c] = 'x';
+			a[r][c] = cc++;
+	}
 }
 
 /*
@@ -92,29 +106,30 @@ void displayBoards(char a[][10], char b[][10])
 		{
 			cout << '|';
 			if (i < 10)
-				for (size_t i = 0; i < 3; i++)
+				for (size_t s = 0; s < 3; s++)
 				{
-					// if (i == 1)
-					// 	cout << a[r][c++];
-					// else
+					if (s == 1)
+						cout << a[r][c++];
+					else
 						cout << ' ';
 				}
 		}
 
 		c = 0;
-		cout << "       " << A++ << " ";
+		cout << "          " << A++ << " ";
 		for (size_t i = 0; i < 11; i++)
 		{
 			cout << '|';
 			if (i < 10)
-				for (size_t i = 0; i < 3; i++)
+				for (size_t s = 0; s < 3; s++)
 				{
-					// if (i == 1)
-					// 	cout << b[r++][c++];
-					// else
+					if (s == 1)
+						cout << b[r][c++];
+					else
 						cout << ' ';
 				}
 		}
+		r++;
 		cout << endl;
 
 	}
