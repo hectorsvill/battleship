@@ -31,7 +31,7 @@ struct PlayerBoard
 };
 
 
-void initBoard(char [][10]);
+void initB(char [][10]);
 void displayBoards(char [][10], char [][10]);
 void initFleet(PlayerBoard&);
 void setShip(PlayerBoard&, int);
@@ -45,16 +45,19 @@ int main()
 	PlayerBoard P1;
 	PlayerBoard P2;
 
-	initBoard(P1.board);
-	initBoard(P2.board);
+	initB(P1.board);
+	initB(P2.board);
 	initFleet(P1);
 	initFleet(P2);
-
-
-
 	initBoard(P1, P2);
-	displayBoards(P1.board, P2.board);
-	displayBoards(P2.board, P1.board);
+
+
+
+
+
+
+	// displayBoards(P1.board, P2.board);
+	// displayBoards(P2.board, P1.board);
 
 
 
@@ -303,7 +306,7 @@ void initFleet(PlayerBoard &p)
 /*
 *	Init boards to spaces;
 */
-void initBoard(char a[][10])
+void initB(char a[][10])
 {
 	for (size_t r = 0; r < 10; r++)
 		for (size_t c = 0; c < 10; c++)
