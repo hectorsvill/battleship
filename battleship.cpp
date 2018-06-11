@@ -148,9 +148,10 @@ void setShip(PlayerBoard &p, int shipIndex)
 *	ship would overlap an already existing ship placement or false if
 *	the space is not occupied.
 */
-
-bool spaceOccupied(PlayerBoard &p, int row, int col, char orientation, int s_size)
+bool spaceOccupied(PlayerBoard &p, int row, int col,
+					char orientation, int s_size)
 {
+
 	if (orientation == 'v')
 	{
 		for (size_t i = row; i < s_size + row; i++)
@@ -244,9 +245,13 @@ void getValidShipInfo(int &row, int &col, char &orientation,
 	orientation = (char)tolower(orientation);
 
 	}
-	while (!check(row, col, orientation)
-			&& !spaceOccupied(p, row, col,
-				orientation, p.ships[shipIndex].size));
+	while (!check(row, col, orientation));
+
+	if (spaceOccupied(p, row, col,
+		orientation, p.ships[shipIndex].size))
+		getValidShipInfo(row, col, orientation, p, shipIndex);
+
+
 
 //	cout << c_row << " " << col << " " << orientation << " " << shipIndex<< endl;
 }
