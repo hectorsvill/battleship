@@ -37,7 +37,7 @@ void initFleet(PlayerBoard&);
 void setShip(PlayerBoard&, int);
 void getValidShipInfo(int&, int&, char&, PlayerBoard&, int);
 void initBoard(PlayerBoard&, PlayerBoard&);
-void turn(PlayerBoard &, PlayerBoard &);
+void turn(PlayerBoard &, PlayerBoard &, int);
 
 
 
@@ -55,7 +55,7 @@ int main()
 	cout << ".\n.\n.\n";
 
 
-	turn(P1, P2);
+	turn(P1, P2, 1);
 
 
 
@@ -67,12 +67,8 @@ int main()
 	return (0);
 }
 
-void make_move(int row, int col, char &b[][10])
-{
 
-}
-
-void turn(PlayerBoard &P1, PlayerBoard &P2)
+void turn(PlayerBoard &P1, PlayerBoard &P2, int p_num)
 {
 	char	c_row;
 	int		row;
@@ -86,7 +82,7 @@ void turn(PlayerBoard &P1, PlayerBoard &P2)
 	cout << "\n\n\n\n\n";
 	cin.clear();
 	do{
-		cout << "Player 1:\n"
+		cout << "Player "<< p_num<<":\n"
 			 << "Fire a shot: ";
 		cin >> c_row >> col;
 		cout << "\n";
@@ -103,7 +99,22 @@ void turn(PlayerBoard &P1, PlayerBoard &P2)
 			|| (P2.board[row][col] != ' ' &&  P2.board[row][col] != 's'));
 
 
-	make_move(row, col, P2.board);
+
+	if (P2.board[row][col] == 's')
+	{
+		cout << "Hit!!!\n";
+		P2.board[row][col] = 'H';
+	}
+	if (P2.board[row][col] == ' ')
+	{
+		cout << "You Missed."
+		P2.board[row][col] = 'M';
+	}
+
+	if ()
+
+
+
 	cout << row << " " << col << endl;
 
 	// c_row = 'x';
