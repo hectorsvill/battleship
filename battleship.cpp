@@ -3,6 +3,7 @@
 
 using namespace std;
 
+const bool CLEAR_SCREEN = true;
 const int Carrier_SIZE = 5;
 const int Battleship_SIZE = 4;
 const int Cruiser_SIZE = 3;
@@ -38,7 +39,7 @@ void setShip(PlayerBoard&, int);
 void getValidShipInfo(int&, int&, char&, PlayerBoard&, int);
 void initBoard(PlayerBoard&, PlayerBoard&);
 void turn(PlayerBoard &, PlayerBoard &, int);
-
+void clearScreen();
 
 
 int main()
@@ -62,11 +63,13 @@ int main()
 		if (player_turn == 2)
 		{
 			turn(P2, P1, player_turn);
+
 			player_turn = 1;
 		}
 		else
 		{
 			turn(P1, P2, player_turn);
+
 			player_turn = 2;
 		}
 	}
@@ -231,6 +234,7 @@ void setShip_test(PlayerBoard &p, int shipIndex, int x)
 void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 {
 
+	clearScreen();
 	cout << "Player 1 set your board.\n";
 	displayBoards(P1.board, P2.board);
 	for (size_t i = 0; i < FLEET_SIZE; i++)
@@ -239,6 +243,7 @@ void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 		displayBoards(P1.board, P2.board);
 	}
 
+	clearScreen();
 	cout << "\n.\n.\n.\n\nPlayer 2 set your board.\n";
 	displayBoards(P2.board, P1.board);
 	for (size_t i = 0; i < FLEET_SIZE; i++)
@@ -538,4 +543,17 @@ void displayBoards(char a[][10], char b[][10])
 	}
 
 	cout << l1 << l2;
+}
+
+
+/// @brief Utilizes an escape character sequence to clear the screen
+void clearScreen()
+{
+	cout << endl;
+	if (CLEAR_SCREEN)
+	{
+		cout << "\033c";
+	}
+
+	cout << endl;
 }
