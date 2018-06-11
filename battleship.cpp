@@ -33,6 +33,7 @@ struct PlayerBoard
 
 void initBoard(char [][10]);
 void displayBoards(char [][10], char [][10]);
+void initFleet(PlayerBoard&);
 
 
 int main()
@@ -42,33 +43,87 @@ int main()
 
 	initBoard(P1.board);
 	initBoard(P2.board);
+	initFleet(P1);
+	initFleet(P2);
 
-	for (size_t i = 0; i < 10; i++)
-	{
-		for (size_t i = 0; i < 10; i++)
-		{
-			cout << P1.board[i][i];
-		}
-		cout << endl;
-	}
+
 
 	displayBoards(P1.board, P2.board);
+
+
+
 	return (0);
 }
+
+/*
+A setShip function that takes in a PlayerBoard object by reference and an int variable
+that stores the index of the ship that is currently being placed, and places the ship onto
+the board. The setShip function calls the getValidShipInfo function to determine which
+spots on the board the ship will occupy.
+*/
+
+
+
+
+/*
+*	An initFleet function that takes in a PlayerBoard object as a parameter and
+*	initializes all the ships in the fleet with the appropriate information. For
+*	example, the name and size of the ship should be initialized within
+*	the function.
+*
+*/
+void initFleet(PlayerBoard &p)
+{
+	for (size_t i = 0; i < FLEET_SIZE; i++)
+	{
+		if (i == 0)
+		{
+			p.ships[i].name = "carrier";
+			p.ships[i].size = Carrier_SIZE;
+		}
+		else if (i == 1)
+		{
+			p.ships[i].name = "battleship";
+			p.ships[i].size = Battleship_SIZE;
+		}
+		else if (i == 2)
+		{
+			p.ships[i].name = "cruiser";
+			p.ships[i].size = Cruiser_SIZE;
+		}
+		else if (i == 3)
+		{
+			p.ships[i].name = "submarine";
+			p.ships[i].size = Submarine_SIZE;
+		}
+		else if (i == 4)
+		{
+			p.ships[i].name = "destroyer";
+			p.ships[i].size = Destroyer_SIZE;
+		}
+
+		p.ships[i].hitCount = 0;
+
+		for (size_t v = 0; v < p.ships[v].size; v++)
+		{
+			p.ships[i].points.push_back(Point());
+			p.ships[i].points[v].row = -1;
+			p.ships[i].points[v].col = -1;
+
+		}
+
+	}
+}
+
 
 /*
 *	Init boards to spaces;
 */
 void initBoard(char a[][10])
 {
-	char cc = '0';
-
 	for (size_t r = 0; r < 10; r++)
-	{
-		cc = '0';
 		for (size_t c = 0; c < 10; c++)
-			a[r][c] = cc++;
-	}
+			a[r][c] = ' ';
 }
 
 /*
