@@ -273,7 +273,7 @@ void initBoard(PlayerBoard &P1, PlayerBoard &P2)
 	}
 
 	cout << "\n.\n.\n.\n\n"
-		 << "Hand terminal to player 2!\n"
+		 << "Hand terminal to player 1!\n"
 		 << "Enter any digit (0-9) to continue: ";
 	cin >> x;
 
