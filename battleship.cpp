@@ -54,8 +54,24 @@ int main()
 
 	cout << ".\n.\n.\n";
 
+	int c = 0;
+	int player_turn = 1;
 
-	turn(P1, P2, 1);
+	while (1)
+	{
+		turn(P1, P2, turn);
+
+		if (c % 2 == 0)
+		{
+			player_turn = 2;
+			c++;
+		}
+		else
+		{
+			player_turn = 1;
+			c++;
+		}
+	}
 
 
 
@@ -65,6 +81,21 @@ int main()
 
 
 	return (0);
+}
+
+
+bool game_won(char b[][10], int p_num)
+{
+
+	for (size_t r = 0; r < 10; r++)
+		for (size_t c = 0; c < 10; c++)
+			if (b[r][c] == 's')
+				return (false);
+
+	cout << "You sunk the fleet!!! You win!!!\n";
+
+
+	return (true);
 }
 
 
@@ -107,34 +138,16 @@ void turn(PlayerBoard &P1, PlayerBoard &P2, int p_num)
 	}
 	if (P2.board[row][col] == ' ')
 	{
-		cout << "You Missed."
+		cout << "You Missed.";
 		P2.board[row][col] = 'M';
 	}
 
-	if ()
+	if (game_won(P2.board, p_num))
+		cout << "won\n";//exit(1);
 
 
-
-	cout << row << " " << col << endl;
-
-	// c_row = 'x';
-	// row = -1;
-	// col = -1;
-	//
-	// displayBoards(P2.board, P1.board);
-	// do{
-	// cout << "\n\n\n\n\n"
-	// 	 << "Player 2:\n"
-	// 	 << "Fire a shot: ";
-	// cin >> c_row >> col;
-	// row = (char)toupper(c_row) - 'A';
-	// col -= 1;
-	// cout << "\n";
-	// }while (!check_game(row, col));
 
 	//cout << row << " " << col << endl;
-
-
 
 }
 
