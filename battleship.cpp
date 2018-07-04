@@ -50,8 +50,13 @@ int main()
 	int			x;
 
 	x = 0;
+
+
+	//set bords to ' '
 	initB(P1.board);
 	initB(P2.board);
+
+
 	initFleet(P1);
 	initFleet(P2);
 	initBoard(P1, P2);
@@ -61,30 +66,27 @@ int main()
 	player_turn = 1;
 
 	clearScreen();
-	while (1)
-	{
-		if (player_turn == 2)
-		{
-			turn(P2, P1, player_turn);
-			displayBoards(P2.board, P1.board);
 
-			player_turn = 1;
-		}
-		else
-		{
-			turn(P1, P2, player_turn);
-			displayBoards(P1.board, P2.board);
+	// while (1)
+	// {
+	// 	if (player_turn == 2)
+	// 	{
+	// 		turn(P2, P1, player_turn);
+	// 		displayBoards(P2.board, P1.board);
+	//
+	// 		player_turn = 1;
+	// 	}
+	// 	else
+	// 	{
+	// 		turn(P1, P2, player_turn);
+	// 		displayBoards(P1.board, P2.board);
+	//
+	//
+	// 		player_turn = 2;
+	// 	}
 
-
-			player_turn = 2;
-		}
-		cout << "\n.\n.\n.\n\n"
-			 << "Hand terminal to player "<< player_turn << "!\n"
-			 << "Enter any digit (0-9) to continue: ";
-		cin >> x;
-
-		clearScreen();
-	}
+	// 	clearScreen();
+	// }
 
 	return (0);
 }
@@ -242,47 +244,7 @@ void setShip_test(PlayerBoard &p, int shipIndex, int x)
 }
 */
 
-/*
-*	An initBoard function that takes in two PlayerBoard objects by reference,
-*	and calls the setShip function for each ship in the fleet. After each ship
-*	is placed on the board the boards should be displayed.
-*/
 
-void initBoard(PlayerBoard &P1, PlayerBoard &P2)
-{
-	int x;
-
-	x = 0;
-
-	clearScreen();
-	cout << "Player 1 set your board.\n";
-	displayBoards(P1.board, P2.board);
-	for (size_t i = 0; i < FLEET_SIZE; i++)
-	{
-		setShip(P1, i);
-		displayBoards(P1.board, P2.board);
-	}
-
-	cout << "\n.\n.\n.\n\n"
-		 << "Hand terminal to player 2!\n"
-		 << "Enter any digit (0-9) to continue: ";
-	cin >> x;
-
-	clearScreen();
-	cout << "Player 2 set your board.\n";
-	displayBoards(P2.board, P1.board);
-	for (size_t i = 0; i < FLEET_SIZE; i++)
-	{
-		setShip(P2, i);
-		displayBoards(P2.board, P1.board);
-	}
-
-	cout << "\n.\n.\n.\n\n"
-		 << "Hand terminal to player 1!\n"
-		 << "Enter any digit (0-9) to continue: ";
-	cin >> x;
-
-}
 
 /*
 *	A setShip function that takes in a PlayerBoard object by reference and an int variable
@@ -329,7 +291,38 @@ void setShip(PlayerBoard &p, int shipIndex)
 		}
 	}
 
-//	cout << row << " " << col << " " << orientation << " " << shipIndex<< endl;
+}
+/*
+*	An initBoard function that takes in two PlayerBoard objects by reference,
+*	and calls the setShip function for each ship in the fleet. After each ship
+*	is placed on the board the boards should be displayed.
+*/
+
+void initBoard(PlayerBoard &P1, PlayerBoard &P2)
+{
+	int x;
+
+	x = 0;
+
+	clearScreen();
+	cout << "Player 1 set your board.\n";
+	displayBoards(P1.board, P2.board);
+	for (size_t i = 0; i < FLEET_SIZE; i++)
+	{
+		setShip(P1, i);
+		displayBoards(P1.board, P2.board);
+	}
+
+	clearScreen();
+	cout << "Player 2 set your board.\n";
+	displayBoards(P2.board, P1.board);
+	for (size_t i = 0; i < FLEET_SIZE; i++)
+	{
+		setShip(P2, i);
+		displayBoards(P2.board, P1.board);
+	}
+
+
 }
 
 /*
@@ -492,9 +485,7 @@ void initFleet(PlayerBoard &p)
 			p.ships[i].points.push_back(Point());
 			p.ships[i].points[v].row = -1;
 			p.ships[i].points[v].col = -1;
-
 		}
-
 	}
 }
 
